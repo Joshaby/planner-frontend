@@ -68,7 +68,7 @@ export const CreateTripPage = () => {
         </div>
 
         <div className="space-y-4">
-          <DestinationAndDateStep isGuestsInputOpen={isGuestesModalOpen} closeGuestsInput={closeGuestsInput} openGuestsInput={openGuestsInput} />
+          <DestinationAndDateStep isGuestsInputOpen={isGuestsInputOpen} closeGuestsInput={closeGuestsInput} openGuestsInput={openGuestsInput} />
 
           {isGuestsInputOpen && (
             <InviteGuestsStep openGuestsModal={openGuestsModal} emailsToInvite={emailsToInvite} openConfirmTripModal={openConfirmTripModal} />
