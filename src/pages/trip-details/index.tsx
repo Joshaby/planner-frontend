@@ -1,6 +1,18 @@
 import { Calendar, CircleCheck, CircleDashed, Link2, MapPin, Plus, Settings2, UserCog } from 'lucide-react';
+import { useState } from 'react';
+import { CreateActivityModal } from './create-activity-modal';
 
 export const TripDetailsPage = () => {
+  const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false);
+
+  const openCreateActivityModal = () => {
+    setIsCreateActivityModalOpen(true);
+  };
+
+  const closeCreateActivityModal = () => {
+    setIsCreateActivityModalOpen(false);
+  };
+
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-4 h-16 rounded-xl bg-zinc-900 shadow-shape flex items-center justify-between">
@@ -24,7 +36,10 @@ export const TripDetailsPage = () => {
         <div className="flex-1 space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl font-semibold">Atividades</h2>
-            <button className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400">
+            <button
+              onClick={openCreateActivityModal}
+              className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
+            >
               <Plus />
               Cadastrar atividade
             </button>
@@ -87,18 +102,14 @@ export const TripDetailsPage = () => {
               <div className="flex items-center justify-between gap-4">
                 <div className="space-y-1.5 flex-1">
                   <span className="block font-medium text-zinc-100">Jessica White</span>
-                  <span className="block text-sm text-zinc-400 truncate">
-                    jessica.white55@yahoo.com
-                  </span>
+                  <span className="block text-sm text-zinc-400 truncate">jessica.white55@yahoo.com</span>
                 </div>
                 <CircleDashed className="text-zinc-400 size-5" />
               </div>
               <div className="flex items-center justify-between gap-4">
                 <div className="space-y-1.5 flex-1">
                   <span className="block font-medium text-zinc-100">José Henrique</span>
-                  <span className="block text-sm text-zinc-400 truncate">
-                    jose@gmail.com
-                  </span>
+                  <span className="block text-sm text-zinc-400 truncate">jose@gmail.com</span>
                 </div>
                 <CircleDashed className="text-zinc-400 size-5" />
               </div>
@@ -110,6 +121,7 @@ export const TripDetailsPage = () => {
           </div>
         </div>
       </main>
+      {isCreateActivityModalOpen && <CreateActivityModal closeCreateActivityModal={closeCreateActivityModal} />}
     </div>
   );
 };
