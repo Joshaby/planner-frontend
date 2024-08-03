@@ -1,6 +1,8 @@
 import { Calendar, CircleCheck, CircleDashed, Link2, MapPin, Plus, Settings2, UserCog } from 'lucide-react';
 import { useState } from 'react';
 import { CreateActivityModal } from './create-activity-modal';
+import { ImportantLinks } from './important-links';
+import { Guests } from './guests';
 
 export const TripDetailsPage = () => {
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false);
@@ -68,57 +70,9 @@ export const TripDetailsPage = () => {
           </div>
         </div>
         <div className="w-80 space-y-6">
-          <div className="space-y-6">
-            <h2 className="font-semibold text-xl">Links importantes</h2>
-            <div className="space-y-5">
-              <div className="flex items-center justify-between gap-4">
-                <div className="space-y-1.5 flex-1">
-                  <span className="block font-medium text-zinc-100">Reserva do Airbnb</span>
-                  <a href="#" className="block text-xs text-zinc-400 truncate hover:text-zinc-200">
-                    https://www.airbnb.com.br/rooms/104700011
-                  </a>
-                </div>
-                <Link2 className="text-zinc-400 size-5" />
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <div className="space-y-1.5 flex-1">
-                  <span className="block font-medium text-zinc-100">Reserva do Airbnb</span>
-                  <a href="#" className="block text-xs text-zinc-400 truncate hover:text-zinc-200">
-                    https://www.airbnb.com.br/rooms/104700011
-                  </a>
-                </div>
-                <Link2 className="text-zinc-400 size-5" />
-              </div>
-            </div>
-            <button className="bg-zinc-800 w-full text-zinc-200 rounded-lg px-5 h-11 font-medium flex items-center justify-center gap-2 hover:bg-zinc-700">
-              <Plus className="size-5" />
-              Cadastrar novo link
-            </button>
-          </div>
+          <ImportantLinks />
           <div className="w-full h-px bg-zinc-800" />
-          <div className="space-y-6">
-            <h2 className="font-semibold text-xl">Convidados</h2>
-            <div className="space-y-5">
-              <div className="flex items-center justify-between gap-4">
-                <div className="space-y-1.5 flex-1">
-                  <span className="block font-medium text-zinc-100">Jessica White</span>
-                  <span className="block text-sm text-zinc-400 truncate">jessica.white55@yahoo.com</span>
-                </div>
-                <CircleDashed className="text-zinc-400 size-5" />
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <div className="space-y-1.5 flex-1">
-                  <span className="block font-medium text-zinc-100">José Henrique</span>
-                  <span className="block text-sm text-zinc-400 truncate">jose@gmail.com</span>
-                </div>
-                <CircleDashed className="text-zinc-400 size-5" />
-              </div>
-            </div>
-            <button className="bg-zinc-800 w-full text-zinc-200 rounded-lg px-5 h-11 font-medium flex items-center justify-center gap-2 hover:bg-zinc-700">
-              <UserCog className="size-5" />
-              Gerenciar convidados
-            </button>
-          </div>
+          <Guests />
         </div>
       </main>
       {isCreateActivityModalOpen && <CreateActivityModal closeCreateActivityModal={closeCreateActivityModal} />}
