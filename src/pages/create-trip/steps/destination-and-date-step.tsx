@@ -2,6 +2,7 @@ import { ArrowRight, Calendar, MapPin, Settings2, X } from 'lucide-react';
 import { Button } from '../../../components/button';
 import { useState } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
+import { format } from 'date-fns';
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -13,6 +14,11 @@ export const DestinationAndDateStep = ({ isGuestsInputOpen, closeGuestsInput, op
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const [eventStartAndEndDate, setEventStartAndEndDate] = useState<DateRange | undefined>();
+
+  const displayedDate =
+    eventStartAndEndDate && eventStartAndEndDate.from && eventStartAndEndDate.to
+      ? format(eventStartAndEndDate.from, "d 'de' LLL").concat(' até ').concat(format(eventStartAndEndDate.to, "d 'de' LLL"))
+      : null;
 
   const openDatePicker = () => {
     setIsDatePickerOpen(true);
@@ -33,9 +39,9 @@ export const DestinationAndDateStep = ({ isGuestsInputOpen, closeGuestsInput, op
           className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
         />
       </div>
-      <button onClick={openDatePicker} disabled={isGuestsInputOpen} className="flex items-center justify-center gap-2 text-left">
+      <button onClick={openDatePicker} disabled={isGuestsInputOpen} className="flex items-center justify-center gap-2 text-left w-[240px]">
         <Calendar className="size-5 text-zinc-400" />
-        <span className="text-lg text-zinc-400 w-40">Quando?</span>
+        <span className="text-lg text-zinc-400 w-40 flex-1">{displayedDate || 'Quando?'}</span>
       </button>
       {isDatePickerOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
