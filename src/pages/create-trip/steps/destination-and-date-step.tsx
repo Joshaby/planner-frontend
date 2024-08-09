@@ -8,12 +8,20 @@ interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
   closeGuestsInput: () => void;
   openGuestsInput: () => void;
+  setDestination: (destination: string) => void;
+  setEventStartAndEndDate: (eventStartAndDate: DateRange | undefined) => void;
+  eventStartAndEndDate: DateRange | undefined;
 }
 
-export const DestinationAndDateStep = ({ isGuestsInputOpen, closeGuestsInput, openGuestsInput }: DestinationAndDateStepProps) => {
+export const DestinationAndDateStep = ({
+  isGuestsInputOpen,
+  closeGuestsInput,
+  openGuestsInput,
+  setDestination,
+  setEventStartAndEndDate,
+  eventStartAndEndDate,
+}: DestinationAndDateStepProps) => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-
-  const [eventStartAndEndDate, setEventStartAndEndDate] = useState<DateRange | undefined>();
 
   const displayedDate =
     eventStartAndEndDate && eventStartAndEndDate.from && eventStartAndEndDate.to
@@ -37,6 +45,7 @@ export const DestinationAndDateStep = ({ isGuestsInputOpen, closeGuestsInput, op
           type="text"
           placeholder="Para onde você vai?"
           className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+          onChange={(e) => setDestination(e.target.value)}
         />
       </div>
       <button onClick={openDatePicker} disabled={isGuestsInputOpen} className="flex items-center justify-center gap-2 text-left w-[240px]">
